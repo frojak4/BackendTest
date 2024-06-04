@@ -32,6 +32,16 @@
 
 <script>
     const app = document.getElementById("app");
+
+    let newMovie = {
+        title: null,
+        year: null,
+        genre: null,
+        director: null,
+        img: null,
+
+    }
+
     let response;
     getData();
     async function getData() {
@@ -41,6 +51,12 @@
     }
 
     function updateView() {
+        app.innerHTML = `
+        <div class=input>
+            <input value=
+        </div>`
+
+
 
         console.log("test");
         for (let i = 0; i < response.data.length; i++) {
