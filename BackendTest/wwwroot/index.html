@@ -23,6 +23,11 @@
             justify-content: center;
             width: 100%;
         }
+        .input {
+            display: flex;
+            flex-direction: column;
+            
+        }
        
     </style>
 </head>
@@ -53,12 +58,41 @@
     function updateView() {
         app.innerHTML = `
         <div class=input>
-            <input value=
+            <input type="text"
+            oninput="newMovie.title = this.value"
+            placeholder="Title"
+            value="${newMovie.title ?? ""}"
+            />
+
+            <input type="number"
+            oninput="newMovie.year = this.value"
+            placeholder="Year"
+            value="${newMovie.year ?? ""}"
+            />
+
+            <input type="text"
+            oninput="newMovie.genre = this.value"
+            placeholder="Genre"
+            value="${newMovie.genre ?? ""}"
+            />
+
+            <input type="text"
+            oninput="newMovie.director = this.value"
+            placeholder="Director"
+            value="${newMovie.director ?? ""}"
+            />
+
+            <input type="text"
+            oninput="newMovie.img = this.value"
+            placeholder="Image"
+            value="${newMovie.img ?? ""}"
+            />
+
+            <button onclick="addMovie()">Add Movie</button>
+
+
         </div>`
 
-
-
-        console.log("test");
         for (let i = 0; i < response.data.length; i++) {
             console.log(i);
             const movie = response.data[i];
@@ -72,6 +106,13 @@
 
 
         }
+    }
+
+    async function addMovie() {
+        let data = newMovie;
+        let response = await axios.post('/test', data);
+        getData();
+        updateView();
     }
 
 </script>

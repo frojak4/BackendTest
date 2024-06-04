@@ -29,6 +29,12 @@ namespace BackendTest
             {
                 return movielist;
             });
+
+            app.MapPost("/test", (Movie movie) =>
+            {
+                movielist.Add(movie);
+            });
+
             app.UseStaticFiles();
             app.Run();
         }
